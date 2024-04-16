@@ -1,0 +1,19 @@
+{
+  "name": "atividade2",
+  "version": "1.0.0",
+  "description": "activity from backend leason (test)",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "mvcProject"
+  },
+  "keywords": [
+    "mvc"
+  ],
+  "author": "matheusmartinsviana",
+  "license": "MIT"
+}
