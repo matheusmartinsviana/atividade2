@@ -5,11 +5,11 @@ Converter a estrutura de entidades e funcionalidades da atividade anterior para 
 ## Estrutura de Pastas:
 
 src 
-   |__ api
-   |__ config
-   |__ controllers
-   |__ models
-   |__ index.js
+   |__ api <br>
+   |__ config <br>
+   |__ controllers <br>
+   |__ models <br>
+   |__ index.js <br>
    |__ package.json
 
 * api - Representa a _View_ do MVC, onde as rotas da API REST serão definidas.

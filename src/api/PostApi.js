@@ -2,10 +2,20 @@ const PostController = require('../controllers/post');
 
 class PostApi {
 
-    async listarPost(req, res) {
+    async listarPosts(req, res) {
         try {
             const posts = await PostController.listarPosts();
             res.send(posts);
+        } catch (error) {
+            res.status(400).send({ error: error.message });
+        }
+    }
+
+    async mostrarPost(req, res) {
+        try {
+            const { id } = req.params;
+            const post = await PostController.buscarPorid(id);
+            res.send(post);
         } catch (error) {
             res.status(400).send({ error: error.message });
         }
@@ -36,11 +46,22 @@ class PostApi {
         try {
             const { id } = req.params;
             await PostController.deletarPost(id);
-            res.send();
+            res.status(204);
         } catch (error) {
             res.status(400).send({ error: error.message });
         }
     }
+
+    async mostrarUserPosts(req, res) {
+        try {
+            const { id } = req.params;
+            await PostController.mostrarUserPosts(id);
+            res.status(200)
+        } catch (error) {
+            res.status(400).send({ error: error.message })
+        }
+    }
+
 }
 
 module.exports = PostApi;

@@ -2,25 +2,31 @@ const express = require('express')
 const database = require('./src/config/database')
 const UserApi = require('./src/api/UserApi')
 const PostApi = require('./src/api/PostApi')
+const Middleware = require('./src/middlewares/validationMiddleware')
 
 const app = express()
 const PORT = 3000
 app.use(express.json())
 
 
-//rotas de usuários
 const userApi = new UserApi();
+const postApi = new PostApi();
+const middleware = new Middleware();
+
+//rotas de usuários
 app.get('/users', userApi.listarUsuario);
-app.post('/users', userApi.criarUsuario);
-app.put('/users/:id', userApi.alterarUsuario);
-app.delete('/users/:id', userApi.deletarUsuario);
+app.get('/users/:id', middleware.validarUserId, userApi.mostrarUsuario);
+app.post('/users', middleware.validarUsuario, userApi.criarUsuario);
+app.put('/users/:id', middleware.validarUserId, middleware.validarUsuario, userApi.alterarUsuario);
+app.delete('/users/:id', middleware.validarUserId, userApi.deletarUsuario);
 
 //rotas de postagens
-const postApi = new PostApi();
-app.get('/posts', postApi.listarPost);
-app.post('/posts', postApi.criarPost);
-app.put('/posts/:id', postApi.alterarPost);
-app.delete('/posts/:id', postApi.deletarPost);
+app.get('/posts', postApi.listarPosts);
+app.get('/posts/:id', middleware.validarPostId, postApi.mostrarPost);
+app.get('/findPost/:id', middleware.validarPostId, postApi.mostrarUserPosts)
+app.post('/posts', middleware.validarPost, postApi.criarPost);
+app.put('/posts/:id', middleware.validarPostId, middleware.validarPost, postApi.alterarPost);
+app.delete('/posts/:id', middleware.validarUserId, postApi.deletarPost);
 
 database.authenticate()
     .then(() => {
