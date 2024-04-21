@@ -11,6 +11,19 @@ class UserApi {
         }
     }
 
+    async mostrarUsuario(req, res) {
+        try {
+            const { id } = req.params;
+            const user = await UserController.buscarPorId(id);
+            if (!user) {
+                res.status(404).send({ error: 'Usuário não encontrado' });
+            }
+            res.send(user);
+        } catch (error) {
+            res.status(400).send({ error: error.message });
+        }
+    }
+
     async criarUsuario(req, res) {
         try {
             const { nome, email, senha } = req.body;

@@ -11,20 +11,20 @@ class PostController {
         ) {
             throw new Error('Título, conteúdo e id do usuário são obrigatórios');
         }
-        
+
         const post = await Post.create({ titulo, conteudo, userId });
 
         return post;
     }
 
     async buscarPorid(id) {
-        if(id === undefined) {
+        if (id === undefined) {
             throw new Error('Id é obrigatório');
         }
 
         const post = await Post.findByPk(id);
 
-        if(!post) {
+        if (!post) {
             throw new Error('Post não encontrado');
         }
 
@@ -47,7 +47,7 @@ class PostController {
     }
 
     async deletarPost(id) {
-        if(id === undefined) {
+        if (id === undefined) {
             throw new Error('Id é obrigatório');
         }
 
@@ -63,6 +63,16 @@ class PostController {
 
         return posts;
     }
+
+    async mostrarUserPosts(id) {
+        const posts = await Post.findAll({
+            where: {
+                userId: id
+            }
+        })
+        return posts;
+    }
 }
+
 
 module.exports = new PostController;
