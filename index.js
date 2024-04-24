@@ -14,9 +14,12 @@ const postApi = new PostApi();
 const middleware = new Middleware();
 
 //rotas de usuários
+// Aplica a validação do token para as rotas abaixo
+app.post('/users', middleware.validarUsuario, userApi.criarUsuario);
+app.post('/login', userApi.login);
+app.use(userApi.validarToken);
 app.get('/users', userApi.listarUsuario);
 app.get('/users/:id', middleware.validarUserId, userApi.mostrarUsuario);
-app.post('/users', middleware.validarUsuario, userApi.criarUsuario);
 app.put('/users/:id', middleware.validarUserId, middleware.validarUsuario, userApi.alterarUsuario);
 app.delete('/users/:id', middleware.validarUserId, userApi.deletarUsuario);
 

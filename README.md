@@ -27,3 +27,9 @@ src
 5. Testar as rotas usando ferramentas como Postman ou curl e verificar o banco de dados.
 6. Aplicar um middleware de validação as rotas de Postagens e as rotas de alteração, listagem e deleção de Usuários.
 7. Testar as rotas usando ferramentas como Postman ou curl.
+
+## Como usar
+
+1. Crie um usúario na rota ˋhttp://localhost:3000/usersˋ com os paramÊtros no body ˋ{ nome, email e senha }ˋ.
+2. Realize o login na rota ˋhttp://localhost:3000/loginˋ com os paramêtros no body ˋ{ nome, email }ˋ e a api irá lhe retornar o seu token.
+3. Copie o token retornado no passo anterior e coloque no header da sua aplicação ˋkey: Authorizationˋ e ˋvalue: SeuTokenCopiadoˋ

@@ -1,18 +1,17 @@
 const Sequelize = require('sequelize');
-//const env = require('../../.env'); //maybe another day i gonna do this
+require('dotenv').config()
 
-const dbName = "atividade2";
-const dbUser = "root";
-const dbHost = "localhost";
-const dbPassword = "";
+const DB_NAME = process.env.DB_NAME;
+const DB_USER = process.env.DB_USER;
+const DB_HOST = process.env.DB_HOST;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 
 const sequelize = new Sequelize(
-    dbName,
-    dbUser,
-    dbPassword, {
-    //passar os dados para o sequelize
-    host: dbHost,
-    dialect: "mysql",
+    DB_NAME,
+    DB_USER,
+    DB_PASSWORD, {
+    host: DB_HOST,
+    dialect: 'mysql',
 });
 
 module.exports = sequelize;
