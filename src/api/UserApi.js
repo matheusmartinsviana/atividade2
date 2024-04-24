@@ -27,6 +27,7 @@ class UserApi {
     async criarUsuario(req, res) {
         try {
             const { nome, email, senha } = req.body;
+
             const user = await UserController.criarUsuario(nome, email, senha);
             res.send(user);
         } catch (error) {
@@ -52,6 +53,29 @@ class UserApi {
             res.send();
         } catch (error) {
             res.status(400).send({ error: error.message });
+        }
+    }
+
+    // Método para validar o token
+    async validarToken(req, res, next) {
+        const token = req.headers.authorization;
+
+        try {
+            await UserController.validarToken(token);
+            next();
+        } catch (error) {
+            return res.status(400).send({ message: 'Você deve estar logado para realizar esta operação',error: error.message })
+        }
+    }
+
+    // Método para login
+    async login(req, res) {
+        try {
+            const { email, senha } = req.body;
+            const token = await UserController.login(email, senha);
+            return res.status(200).send(token);
+        } catch (error) {
+            return res.status(400).send({ error: error.message })
         }
     }
 }
