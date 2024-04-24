@@ -30,6 +30,6 @@ src
 
 ## Como usar
 
-1. Crie um usúario na rota ˋhttp://localhost:3000/usersˋ com os paramÊtros no body ˋ{ nome, email e senha }ˋ.
-2. Realize o login na rota ˋhttp://localhost:3000/loginˋ com os paramêtros no body ˋ{ nome, email }ˋ e a api irá lhe retornar o seu token.
-3. Copie o token retornado no passo anterior e coloque no header da sua aplicação ˋkey: Authorizationˋ e ˋvalue: SeuTokenCopiadoˋ
+1. Crie um usúario na rota ```http://localhost:3000/users``` com os paramÊtros no body ```{ nome, email e senha }```.
+2. Realize o login na rota ```http://localhost:3000/login``` com os paramêtros no body ```{ nome, email }``` e a api irá lhe retornar o seu token.
+3. Copie o token retornado no passo anterior e coloque no header da sua aplicação ```key: Authorization``` e ```value: SeuTokenCopiado```
